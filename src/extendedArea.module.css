@@ -1,0 +1,146 @@
+/* styeles for wrapper */
+.preWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.wrapper {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  resize: none;
+  font-size: 0.75rem;
+  outline: none; /* focus:outline-none */
+  align-self: center;
+}
+
+.wrapperToolbar {
+  width: 100%;
+  background-color: rgb(72 76 82 / var(--tw-bg-opacity));
+  border: 1px solid #4b5563; /* border-gray-600 */
+  border-radius: 0.475rem;
+  height: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapperEditor {
+  padding: 0px 10px 0px 10px;
+  height: 150px;
+  margin-top: 2rem;
+  background-color: rgb(72 76 82 / var(--tw-bg-opacity));
+  border: 1px solid #4b5563;
+  border-radius: 0.475rem;
+  font-size: initial;
+  font-weight: initial;
+}
+.wrapperEditor h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0.67em 0;
+  direction: ltr;
+  display: inline;
+  font-family: "Roboto", sans-serif;
+  overflow-wrap: break-word;
+}
+.wrapperEditor h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.83em 0;
+  direction: ltr;
+  display: inline;
+  font-family: "Roboto", sans-serif;
+  overflow-wrap: break-word;
+}
+.wrapperEditor p {
+  overflow-wrap: anywhere;
+}
+.wrapperEditor span {
+  overflow-wrap: anywhere;
+}
+
+/* styles of elements */
+
+.iconB,
+.Iconi,
+.iconU,
+.iconDots,
+.iconNumber,
+.textAlignLeft,
+.textAlignCenter,
+.textAlignRight {
+  background-color: transparent;
+  box-shadow: none;
+  width: 50px;
+  height: 35px;
+  border: 0px solid #4b5563;
+}
+
+.iconB:hover,
+.IconI:hover,
+.iconU:hover,
+.iconDots:hover,
+.iconNumber:hover,
+.textAlignLeft:hover,
+.textAlignCenter:hover,
+.textAlignRight:hover {
+  box-shadow: none;
+}
+.iconB:active,
+.IconI:active,
+.iconU:active,
+.iconDots:active,
+.iconNumber:active,
+.textAlignLeft:active,
+.textAlignCenter:active,
+.textAlignRight:active {
+  box-shadow: none;
+}
+
+/* special styles for h1 nad h2 elements becauze this elements wont be styled trough classic wrapper as you cenn se upper */
+.rdwlistwrapper {
+  background: transparent;
+  color: black;
+  box-shadow: none;
+  margin-right: 23px;
+  margin-left: 10px;
+}
+.rdwlistwrapper * {
+  color: inherit;
+  font-size: 25px;
+  color: white;
+  font-weight: 500;
+  background: inherit;
+  box-shadow: none;
+  border: 0px solid #4b5563;
+}
+/* .rdwlistwrapper:hover * {
+  border: 1px solid #3bea3e;
+  box-shadow: none;
+}
+
+.rdwlistwrapper:active * {
+  border: 1px solid #3bea3e;
+  color: #47cf73;
+} */
+
+/* end of spec style for both elements */
+/* ====================================== */
+
+@media screen and (min-width: 200px) and (max-width: 423px) {
+  .wrapperToolbar {
+    height: 7rem;
+    width: 97%;
+    margin-left: 0.3rem;
+  }
+}
+@media screen and (min-width: 424px) and (max-width: 700px) {
+  .wrapperToolbar {
+    height: 7rem;
+    width: 97%;
+    margin-left: 0.3rem;
+    justify-content: space-around;
+  }
+}
