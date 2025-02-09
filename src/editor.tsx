@@ -7,27 +7,22 @@ import css from "../src/extendedArea.module.css";
 import { toolbarOptions } from "../src/settings";
 import draftToHtml from "draftjs-to-html";
 import htmlToDraft from "html-to-draftjs";
+import { useFormContext } from "react-hook-form";
 
-// import { useFormContext } from "react-hook-form";
-// import { FormValues } from "pages/creator/video/components/videoAddEdit/videoAddEditForm";
 interface ExtendedEditorProps {
-  isStepOne?: boolean;
-  productDescriptioForStepOne: string;
-  indexProduct: number;
+  productData: string;
+  productIndex: number;
+}
+interface FormValues {
+  products: { name: string; description: string }[];
 }
 const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
-  isStepOne,
-  productDescriptioForStepOne,
-  indexProduct,
+  productData,
+  productIndex,
 }) => {
-  console.log(css);
-  // const { setValue, watch } = useFormContext<FormValues>();
-  // const isDataINWatch = watch("description");
-  const isDataINWatch = "some data";
-  // const productDescriptioForStepOne = watch(`products.${indexProduct}.description`)
+  const { setValue } = useFormContext<FormValues>();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [ReadyToSendPreparedHtml, setReadyToSendPreparedHtml] = useState<any>();
-  console.log("ReadyToSendPreparedHtml", ReadyToSendPreparedHtml);
+
   //SET ALL TO STATE
   const onEditorStateChange = (newState: EditorState) => {
     setEditorState(newState);
@@ -36,28 +31,10 @@ const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
   const pushHtmlContent = () => {
     const rawContentState = convertToRaw(editorState.getCurrentContent());
     const htmlContent = draftToHtml(rawContentState);
-    console.log("editor state", editorState);
-    console.log("state to raw", rawContentState);
-    console.log("UNPACK RAW TO HTML", htmlContent);
     const convertedToStringAllData = JSON.stringify(htmlContent);
-    setReadyToSendPreparedHtml(convertedToStringAllData);
-    if (isStepOne !== false) {
-      setReadyToSendPreparedHtml(convertedToStringAllData);
-      //this is commented section if you will use react-hook-forms
-      // setValue(
-      //   `products.${indexProduct}.description`,
-      //   convertedToStringAllData
-      // );
-      // const productDescriptioForStepOne = watch(`products.${indexProduct}.description`)
-    } else {
-      // setValue("description", convertedToStringAllData);
-    }
+    setValue(`products.${productIndex}.description`, convertedToStringAllData);
     return convertedToStringAllData;
   };
-
-  //WHEN EDIT
-  let descriptionParsed: string | object = isDataINWatch;
-  // Function to check if a string is valid JSON
   const isJsonString = (str: string) => {
     try {
       JSON.parse(str);
@@ -66,35 +43,20 @@ const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
       return false;
     }
   };
-
+  let descriptionParsed: string | object = "";
   // Check if the string is valid JSON
-  //check which step
+  //check simple text or it is new html text
   const GetAndConvertValues = async () => {
-    if (isStepOne !== false) {
-      if (
-        typeof productDescriptioForStepOne === "string" &&
-        isJsonString(productDescriptioForStepOne)
-      ) {
-        descriptionParsed = JSON.parse(productDescriptioForStepOne);
-      } else {
-        descriptionParsed = productDescriptioForStepOne;
-      }
+    if (typeof productData === "string" && isJsonString(productData)) {
+      descriptionParsed = JSON.parse(productData);
     } else {
-      if (typeof isDataINWatch === "string" && isJsonString(isDataINWatch)) {
-        descriptionParsed = JSON.parse(isDataINWatch);
-      } else {
-        descriptionParsed = isDataINWatch;
-      }
+      descriptionParsed = productData;
     }
     return descriptionParsed;
   };
 
-  // if (typeof isDataINWatch === 'string' && isJsonString(isDataINWatch)) {
-  //   descriptionParsed = JSON.parse(isDataINWatch)
-  // } else {
-  //   descriptionParsed = isDataINWatch
-  // }
-  //create html data for editor
+  console.log(GetAndConvertValues());
+
   useEffect(() => {
     GetAndConvertValues();
     const contentBlock = htmlToDraft(descriptionParsed);
@@ -102,17 +64,15 @@ const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
       const contentState = ContentState.createFromBlockArray(
         contentBlock.contentBlocks
       );
-      console.log(contentState);
+
       const editorStateFromServer = EditorState.createWithContent(contentState);
-      console.log(editorStateFromServer);
+
       setEditorState(editorStateFromServer);
     }
-  }, [productDescriptioForStepOne, isDataINWatch]);
+  }, [productData]);
   //note:how it work when generate html=>state editor(specified)=>  (convert to)raw format=>  (convert raw to html)html from raw =>  string from html=>send
   //note:how it work when get simple text or old generated html:string=>html=>raw=>content state
-  // console.log("descriptionParsed", descriptionParsed);
-  // console.log("productDescriptioForStepOne", productDescriptioForStepOne);
-  // console.log(isJsonString(isDataINWatch));
+
   return (
     <div className={css.wrapper}>
       <Editor
@@ -123,7 +83,6 @@ const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
         onEditorStateChange={onEditorStateChange}
         onBlur={pushHtmlContent}
         toolbar={toolbarOptions}
-        // defaultEditorState={}
       />
     </div>
   );
