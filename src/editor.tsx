@@ -14,6 +14,8 @@ interface ExtendedEditorProps {
   productIndex: number;
 }
 interface FormValues {
+  selectedProduct: "";
+
   products: { name: string; description: string }[];
 }
 const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
@@ -35,6 +37,8 @@ const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
     setValue(`products.${productIndex}.description`, convertedToStringAllData);
     return convertedToStringAllData;
   };
+
+  //check simple text or it is new html text
   const isJsonString = (str: string) => {
     try {
       JSON.parse(str);
@@ -44,8 +48,6 @@ const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
     }
   };
   let descriptionParsed: string | object = "";
-  // Check if the string is valid JSON
-  //check simple text or it is new html text
   const GetAndConvertValues = async () => {
     if (typeof productData === "string" && isJsonString(productData)) {
       descriptionParsed = JSON.parse(productData);
@@ -64,9 +66,7 @@ const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
       const contentState = ContentState.createFromBlockArray(
         contentBlock.contentBlocks
       );
-
       const editorStateFromServer = EditorState.createWithContent(contentState);
-
       setEditorState(editorStateFromServer);
     }
   }, [productData]);

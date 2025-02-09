@@ -1,12 +1,13 @@
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
-
 const productsData = [
-  { id: 1, name: "Яблоко", description: "Свежее и сочное яблоко" },
-  { id: 2, name: "Банан", description: "Спелый и сладкий банан" },
-  { id: 3, name: "Апельсин", description: "Сочный цитрусовый апельсин" },
+  { id: 1, name: "Apple", description: "Fresh and juicy apple" },
+  { id: 2, name: "Banana", description: "Ripe and sweet banana" },
+  { id: 3, name: "Orange", description: "Juicy citrus orange" },
+  { id: 4, name: "Marshmallow", description: "Soft and fluffy marshmallow" },
 ];
+
 const ExtendedEditor = dynamic(() => import("../src/editor"), {
   ssr: false,
 });
@@ -14,6 +15,7 @@ const ExtendedEditor = dynamic(() => import("../src/editor"), {
 export default function Page() {
   const methods = useForm({
     defaultValues: {
+      selectedProduct: "",
       products: productsData,
     },
   });
@@ -25,9 +27,12 @@ export default function Page() {
     const selectedProductId = watch("selectedProduct");
 
     return (
-      <div className="space-y-4">
+      <div className="space-y-4 flex flex-col p-4 border rounded-md">
+        <strong className="">
+          exmaple-new products/description from api or new from user{" "}
+        </strong>
         <select
-          className="border rounded-md p-2"
+          className="border rounded-md p-2bg-white text-black text-right "
           value={selectedProductId}
           onChange={(e) => {
             setValue("selectedProduct", e.target.value);
@@ -36,8 +41,8 @@ export default function Page() {
             );
           }}
         >
-          <option value="" className="text-black">
-            Выберите продукт
+          <option value="" className="text-gray-700 bg-gray-100 self-end">
+            🔽 Change The Product
           </option>
           {productsData.map((product) => (
             <option key={product.id} value={product.id}>
@@ -45,33 +50,44 @@ export default function Page() {
             </option>
           ))}
         </select>
-
-        {selectedProductId && (
-          <div className="p-4 border rounded-md">
-            <strong>Description:</strong>{" "}
-            {
-              productsData.find((p) => p.id.toString() === selectedProductId)
-                ?.description
-            }
-          </div>
-        )}
       </div>
     );
   };
-  const a = watch(`products.${selectedProductIndex}.description`) || "";
-  console.log("in parent", a);
+  const description =
+    watch(`products.${selectedProductIndex}.description`) || "";
+
+  const selectedProductId = watch("selectedProduct");
   return (
     <FormProvider {...methods}>
-      <div className="flex items-center content-center flex-col bg-gray-400 h-[400px]">
-        <h1 className="mt-4">Page With Client Componet</h1>
+      <div className="flex items-center content-center flex-col bg-gray-400 justify-between min-h-[500px] ">
         <ProductSelect setSelectedIndex={setSelectedProductIndex} />
-        <div className="min-h-[260px] max-h-[360px]  bg-gray-500 flex items-center justify-center rounded-md mt-4 ">
+        <div className="min-h-[260px] max-h-[360px]  bg-gray-500 flex items-center justify-center rounded-md ">
           <ExtendedEditor
             productData={
               watch(`products.${selectedProductIndex}.description`) || ""
             }
             productIndex={selectedProductIndex}
           />
+        </div>
+        <div className="p-4 border rounded-md ">
+          <strong>
+            Description / how generated html text looks on other side of page :
+          </strong>{" "}
+          {selectedProductId &&
+            (() => {
+              const containsHTML = /<\/?[a-z][\s\S]*>/i.test(description);
+              let cleanedHtml = description
+                .replace(/^"(.*)"$/, "$1")
+                .replace(/\\r\\n/g, "\n")
+                .replace(/\\n/g, "\n")
+                .trim();
+
+              return containsHTML ? (
+                <span dangerouslySetInnerHTML={{ __html: cleanedHtml }} />
+              ) : (
+                <span>{description}</span>
+              );
+            })()}
         </div>
       </div>
     </FormProvider>
