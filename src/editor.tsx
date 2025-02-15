@@ -72,7 +72,7 @@ const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
   }, [productData]);
   //note:how it work when generate html=>state editor(specified)=>  (convert to)raw format=>  (convert raw to html)html from raw =>  string from html=>send
   //note:how it work when get simple text or old generated html:string=>html=>raw=>content state
-
+//test note
   return (
     <div className={css.wrapper}>
       <Editor
