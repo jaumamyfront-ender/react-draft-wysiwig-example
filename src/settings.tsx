@@ -41,20 +41,20 @@ export const toolbarOptions = {
       // "subscript",
     ],
     bold: {
-      icon: "/customIcons/white/b.svg",
-      iconOnClick: ["/customIcons/green/b.svg"],
+      icon: "/customIcons/white/bold.svg",
+
       className: css.iconB,
       title: undefined,
     },
     italic: {
-      icon: "/customIcons/white/i.svg",
-      iconOnClick: ["/customIcons/green/i.svg"],
-      className: css.Iconi,
+      icon: "/customIcons/white/italic.svg",
+
+      className: css.IconI,
       title: undefined,
     },
     underline: {
-      icon: "/customIcons/white/u.svg",
-      iconOnClick: ["/customIcons/green/u.svg"],
+      icon: "/customIcons/white/underline.svg",
+
       className: css.iconU,
       title: undefined,
     },
@@ -85,45 +85,45 @@ export const toolbarOptions = {
     styleImagesWhenDropDownIsFalse: {
       Normal: {
         icon: undefined,
-        iconOnClick: undefined,
+
         label: "Normal",
       },
       H1: {
         icon: ["/customIcons/white/ho.png"],
-        iconOnClick: ["/customIcons/green/ho.png"],
+
         label: "H1",
       },
       H2: {
         icon: "/customIcons/white/hs.png",
-        iconOnClick: ["/customIcons/green/hs.png"],
+
         label: "H2",
       },
       H3: {
         icon: undefined,
-        iconOnClick: undefined,
+
         label: "H3",
       },
       H4: {
         icon: undefined,
-        iconOnClick: undefined,
+
         label: "H4",
       },
       H5: {
         icon: undefined,
-        iconOnClick: undefined,
+
         label: "H5",
       },
       H6: {
         icon: undefined,
-        iconOnClick: undefined,
+
         label: "H6",
       },
       Blockquote: {
         icon: undefined,
-        iconOnClick: undefined,
+
         label: "Blockquote",
       },
-      Code: { icon: undefined, iconOnClick: undefined, label: "Code" },
+      Code: { icon: undefined, label: "Code" },
     },
 
     BlockQuote: { icon: undefined, className: undefined, title: undefined },
@@ -163,26 +163,26 @@ export const toolbarOptions = {
     options: ["unordered", "ordered"],
     // options: ["unordered", "ordered", "indent", "outdent"],
     unordered: {
-      icon: "/customIcons/white/dots.png",
-      iconOnClick: ["/customIcons/green/dots.png"],
+      icon: "/customIcons/white/dots.svg",
+
       className: css.iconDots,
       title: undefined,
     },
     ordered: {
-      icon: "/customIcons/white/numbr.png",
-      iconOnClick: ["/customIcons/green/numbr.png"],
+      icon: "/customIcons/white/numbers.svg",
+
       className: css.iconNumber,
       title: undefined,
     },
     indent: {
       icon: undefined,
-      iconOnClick: undefined,
+
       className: undefined,
       title: undefined,
     },
     outdent: {
       icon: undefined,
-      iconOnClick: undefined,
+
       className: undefined,
       title: undefined,
     },
@@ -196,26 +196,26 @@ export const toolbarOptions = {
     options: ["left", "center", "right"],
     // options: ["left", "center", "right", "justify"],
     left: {
-      icon: "/customIcons/white/left.png",
-      iconOnClick: ["/customIcons/green/left.png"],
+      icon: "/customIcons/white/left.svg",
+
       className: css.textAlignLeft,
       title: undefined,
     },
     center: {
-      icon: "/customIcons/white/center.png",
-      iconOnClick: ["/customIcons/green/center.png"],
+      icon: "/customIcons/white/center.svg",
+
       className: css.textAlignCenter,
       title: undefined,
     },
     right: {
-      icon: "/customIcons/white/right.png",
-      iconOnClick: ["/customIcons/green/right.png"],
+      icon: "/customIcons/white/right.svg",
+
       className: css.textAlignRight,
       title: undefined,
     },
     justify: {
       icon: undefined,
-      iconOnClick: undefined,
+
       className: undefined,
       title: undefined,
     },

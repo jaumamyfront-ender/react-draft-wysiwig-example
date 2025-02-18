@@ -37,23 +37,27 @@
   font-weight: initial;
 }
 .wrapperEditor h1 {
-  font-size: 2rem;
+  font-size: 1.4em;
   font-weight: bold;
-  margin: 0.67em 0;
+  margin: 0.37em 0;
+  line-height: 1;
   direction: ltr;
   display: inline;
   font-family: "Roboto", sans-serif;
   overflow-wrap: break-word;
 }
+
 .wrapperEditor h2 {
-  font-size: 1.5em;
+  font-size: 1.1em;
   font-weight: bold;
-  margin: 0.83em 0;
+  margin: 0.33em 0;
+  line-height: 1;
   direction: ltr;
   display: inline;
   font-family: "Roboto", sans-serif;
   overflow-wrap: break-word;
 }
+
 .wrapperEditor p {
   overflow-wrap: anywhere;
 }
@@ -64,7 +68,7 @@
 /* styles of elements */
 
 .iconB,
-.Iconi,
+.IconI,
 .iconU,
 .iconDots,
 .iconNumber,
@@ -116,15 +120,6 @@
   box-shadow: none;
   border: 0px solid #4b5563;
 }
-/* .rdwlistwrapper:hover * {
-  border: 1px solid #3bea3e;
-  box-shadow: none;
-}
-
-.rdwlistwrapper:active * {
-  border: 1px solid #3bea3e;
-  color: #47cf73;
-} */
 
 /* end of spec style for both elements */
 /* ====================================== */

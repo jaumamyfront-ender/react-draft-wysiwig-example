@@ -72,7 +72,33 @@ const ExtendedEditor: React.FC<ExtendedEditorProps> = ({
   }, [productData]);
   //note:how it work when generate html=>state editor(specified)=>  (convert to)raw format=>  (convert raw to html)html from raw =>  string from html=>send
   //note:how it work when get simple text or old generated html:string=>html=>raw=>content state
-//test note
+  //test note
+  //removeBrokenStyles
+  function addHoverStyles(className: any) {
+    const style = document.createElement("style");
+    style.innerHTML = `
+        .${className}:hover {
+            box-shadow: none;
+            background-color: transparent;
+            border: none;
+        }
+    `;
+    document.head.appendChild(style);
+  }
+  function removeWeirdStyle(className: any) {
+    const style = document.createElement("style");
+    style.innerHTML = `
+        .${className} {
+margin: 3px 0;
+        }
+    `;
+    document.head.appendChild(style);
+  }
+
+  addHoverStyles("rdw-option-wrapper");
+  removeWeirdStyle("public-DraftStyleDefault-block");
+  removeWeirdStyle("public-DraftStyleDefault-ul");
+  removeWeirdStyle("public-DraftStyleDefault-ol");
   return (
     <div className={css.wrapper}>
       <Editor

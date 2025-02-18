@@ -55,3 +55,11 @@ li {
   margin: 0;
   padding: 0;
 }
+.rdw-option-active {
+  filter: invert(51%) sepia(92%) saturate(666%) hue-rotate(100deg);
+}
+.rdw-option-wrapper:hover {
+  box-shadow: none;
+  background-color: transparent;
+  border: none; /* Лучше использовать так */
+}

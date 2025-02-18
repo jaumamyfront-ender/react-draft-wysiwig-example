@@ -27,7 +27,7 @@ export default function Page() {
     const selectedProductId = watch("selectedProduct");
 
     return (
-      <div className="space-y-4 flex flex-col p-4 border rounded-md">
+      <div className="space-y-4 flex flex-col p-4 border rounded-md mb-6">
         <strong className="">
           exmaple-new products/description from api or new from user{" "}
         </strong>
@@ -56,10 +56,10 @@ export default function Page() {
   const description =
     watch(`products.${selectedProductIndex}.description`) || "";
 
-  const selectedProductId = watch("selectedProduct");
+  // const selectedProductId = watch("selectedProduct");
   return (
     <FormProvider {...methods}>
-      <div className="flex items-center content-center flex-col bg-gray-400 justify-between min-h-[500px] ">
+      <div className="flex items-center content-center flex-col bg-gray-400 justify-between min-h-[500px]  ">
         <ProductSelect setSelectedIndex={setSelectedProductIndex} />
         <div className="min-h-[260px] max-h-[360px]  bg-gray-500 flex items-center justify-center rounded-md ">
           <ExtendedEditor
@@ -69,7 +69,7 @@ export default function Page() {
             productIndex={selectedProductIndex}
           />
         </div>
-        <div className="p-4 border rounded-md  flex flex-col ">
+        <div className="p-4 border rounded-md  flex flex-col mt-6">
           <strong>
             Description / how generated html text looks on other side of page :
           </strong>{" "}
@@ -78,10 +78,7 @@ export default function Page() {
             Note: don't forget to add default styles to ul/ol/li el because next
             js nullifies these default html styles.See example in globals.css!
           </strong>
-          <ul>
-            <li>sdfsfdfsd</li>
-          </ul>
-          {selectedProductId &&
+          {true &&
             (() => {
               const containsHTML = /<\/?[a-z][\s\S]*>/i.test(description);
               let cleanedHtml = description
