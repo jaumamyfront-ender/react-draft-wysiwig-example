@@ -69,10 +69,18 @@ export default function Page() {
             productIndex={selectedProductIndex}
           />
         </div>
-        <div className="p-4 border rounded-md ">
+        <div className="p-4 border rounded-md  flex flex-col ">
           <strong>
             Description / how generated html text looks on other side of page :
           </strong>{" "}
+          <strong>
+            {" "}
+            Note: don't forget to add default styles to ul/ol/li el because next
+            js nullifies these default html styles.See example in globals.css!
+          </strong>
+          <ul>
+            <li>sdfsfdfsd</li>
+          </ul>
           {selectedProductId &&
             (() => {
               const containsHTML = /<\/?[a-z][\s\S]*>/i.test(description);

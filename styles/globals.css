@@ -19,3 +19,39 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+ul {
+  list-style-type: disc; /* Стандартный маркер — кружок */
+  padding-left: 40px; /* Отступ для вложенного списка */
+  margin: 0;
+}
+
+ul ul {
+  list-style-type: circle; /* Второй уровень — круг */
+}
+
+ul ul ul {
+  list-style-type: square; /* Третий уровень — квадрат */
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
+ol {
+  list-style-type: decimal; /* Нумерация по умолчанию */
+  padding-left: 40px; /* Отступ слева */
+  margin: 0;
+}
+
+ol ol {
+  list-style-type: lower-alpha; /* Второй уровень — буквы */
+}
+
+ol ol ol {
+  list-style-type: lower-roman; /* Третий уровень — римские цифры */
+}
+
+li {
+  margin: 0;
+  padding: 0;
+}
