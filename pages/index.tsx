@@ -85,6 +85,11 @@ export default function Page() {
                 .replace(/^"(.*)"$/, "$1")
                 .replace(/\\r\\n/g, "\n")
                 .replace(/\\n/g, "\n")
+                .replace(/\\n/g, "\n")
+                .replace(/^"(.*)"$/, "$1")
+                .replace(/\\r\\n/g, "\n")
+                .replace(/\\n/g, "\n")
+                .replace(/\\"/g, '"')
                 .trim();
 
               return containsHTML ? (
